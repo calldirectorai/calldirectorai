@@ -1,16 +1,31 @@
-## Hi there 👋
+# CallDirector AI 🚀
 
-<!--
-**calldirectorai/calldirectorai** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Never miss a call again.
 
-Here are some ideas to get you started:
+We turn your business phone into an AI-powered receptionist that:
+- Answers instantly
+- Qualifies leads
+- Books appointments
+- Works 24/7
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+## 🎯 Live Demo
+
+📞 Call the AI Receptionist: +1 (240) 852-1600  
+🌐 https://calldirector.ai
+
+---
+
+## 💡 What We Do
+
+- AI Phone Receptionists  
+- Smart Websites that TALK  
+- Lead Qualification Automation  
+- Appointment Booking Systems  
+
+---
+
+## 📍 Serving
+
+DMV Area (MD • DC • VA) & Nationwide
