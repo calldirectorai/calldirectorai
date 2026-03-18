@@ -1,7 +1,11 @@
 ![Twilio](https://img.shields.io/badge/Twilio-Voice-red?style=for-the-badge&logo=twilio)
+![RingCentral](https://img.shields.io/badge/RingCentral-UCaaS-blue?style=for-the-badge)
+![AudioCodes](https://img.shields.io/badge/AudioCodes-Voice-gold?style=for-the-badge)
 ![OpenAI](https://img.shields.io/badge/OpenAI-Realtime-black?style=for-the-badge&logo=openai)
+![Claude](https://img.shields.io/badge/Claude-AI-orange?style=for-the-badge)
 ![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Voice-purple?style=for-the-badge)
-![AI](https://img.shields.io/badge/AI-Powered-blue?style=for-the-badge)
+
+## 🚀 Turn Every Missed Call Into a Customer
 
 # CallDirector AI 🚀
 
