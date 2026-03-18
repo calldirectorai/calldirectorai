@@ -12,8 +12,9 @@ We turn your business phone into an AI-powered receptionist that:
 
 ## 🎯 Live Demo
 
-📞 Call the AI Receptionist: +1 (240) 852-1600  
-🌐 https://calldirector.ai
+[🚀 Try the AI Receptionist](https://calldirector.ai)
+
+📞 Or call now: +1 (240) 852-1600
 
 ---
 
