@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><script src="https://cdn.tailwindcss.com"></script>
+
+<!-- SEO Meta Tags -->
+<title>AI Phone Receptionist for Service Businesses – CallDirector</title>
+<meta name="description" content="Never miss another call. CallDirector AI is an AI phone receptionist that answers your business phone 24/7, books jobs, and captures missed-call revenue. 7-day " />
+<meta name="keywords" content="AI phone receptionist" />
+<meta property="og:title" content="AI Phone Receptionist for Service Businesses – CallDirector" />
+<meta property="og:description" content="Never miss another call. CallDirector AI is an AI phone receptionist that answers your business phone 24/7, books jobs, and captures missed-call revenue. 7-day " />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Phone Receptionist for Service Businesses – CallDirector" />
+<meta name="twitter:description" content="Never miss another call. CallDirector AI is an AI phone receptionist that answers your business phone 24/7, books jobs, and captures missed-call revenue. 7-day " />
+<link rel="icon" href="https://paymegpt.com/api/landing-pages/images/landing-page-images%2F0%2F1770641194588_blob.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://paymegpt.com/api/landing-pages/images/landing-page-images%2F0%2F1770641194588_blob.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://paymegpt.com/api/landing-pages/images/landing-page-images%2F0%2F1770641194588_blob.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="https://paymegpt.com/api/landing-pages/images/landing-page-images%2F0%2F1770641194588_blob.png" />
+<!-- End SEO Meta Tags -->
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=1617');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='sXARhgR';
+  var apiBase='https://paymegpt.com';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">Thank you for purchasing '+pName.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'.</p><button onclick="document.getElementById(\'payment-success-overlay\').remove();window.history.replaceState({},\'\',window.location.pathname);" style="padding:12px 32px;font-size:16px;font-weight:600;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;">Continue</button></div>';
+      document.body.appendChild(overlay);
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased bg-white text-slate-800">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 backdrop-blur-md bg-white/90 border-b border-slate-200/60">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 py-3.5 flex items-center justify-between">
+  <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" class="flex items-center gap-2.5">
+    <div class="h-9 w-9 rounded-lg vera-gradient flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+    <span class="font-bold text-lg">CallDirector <span class="text-vera">AI</span></span>
+  </a>
+  <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+    <a href="#what-we-install" class="hover:text-vera transition-colors">What We Install</a>
+    <a href="#why-calldirector" class="hover:text-vera transition-colors">Why Us</a>
+    <a href="#pricing" class="hover:text-vera transition-colors">Pricing</a>
+    <a href="#results" class="hover:text-vera transition-colors">Results</a>
+  </nav>
+  <div class="flex items-center gap-3">
+    <button onclick="openDemoModal()" class="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-vera hover:text-vera-dark cta-ghost"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>Listen to a live demo call</button>
+    <a href="javascript:void(0)" onclick="openTrialModal()" class="rounded-lg px-4 py-2 text-sm font-semibold vera-gradient text-white">Start Your 7-Day Pilot</a>
+  </div>
+</div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="hero-dark">
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 lg:pt-28 pb-16 sm:pb-20">
+    <!-- Centered headline block -->
+    <div class="text-center max-w-3xl mx-auto">
+      <div class="hero-anim-1 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-slate-300 mb-6">
+        <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Installed by a telecom expert with 22 years of experience
+      </div>
+      <h1 class="hero-anim-1 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08] text-white">Stop losing business<br><span class="text-vera">to missed calls.</span></h1>
+      <p class="hero-anim-2 mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">We install smart phone systems that answer every call, book appointments, and capture leads — 24/7 on your existing number.</p>
+      <div class="hero-anim-3 mt-10 flex flex-col sm:flex-row items-center gap-4 justify-center">
+        <a href="javascript:void(0)" onclick="openTrialModal()" class="w-full sm:w-auto inline-flex items-center justify-center rounded-xl vera-gradient px-8 py-4 text-base font-bold text-white shadow-lg shadow-vera/25 cta-primary">Start Your 7-Day Pilot<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+        <button onclick="openDemoModal()" class="inline-flex items-center gap-2 text-[15px] font-semibold text-slate-300 hover:text-white transition-colors cta-ghost"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>Listen to a live demo call</button>
+      </div>
+      <p class="hero-anim-3 mt-3 text-xs text-slate-500">Live in 24–48 hours on your existing number.</p>
+    </div>
+    <div class="mt-16 grid lg:grid-cols-5 gap-8 items-start">
+      <!-- Left: 3 stat cards -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="stat-item stat-1 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="h-9 w-9 rounded-lg bg-red-500/15 flex items-center justify-center"><svg class="w-4.5 h-4.5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.13a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"/></svg></div>
+            <div class="text-2xl font-bold text-white">62%</div>
+          </div>
+          <p class="text-sm text-slate-400">of callers won't leave a voicemail. They just call someone else.</p>
+        </div>
+        <div class="stat-item stat-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="h-9 w-9 rounded-lg bg-amber-500/15 flex items-center justify-center"><svg class="w-4.5 h-4.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div class="text-2xl font-bold text-white">35%</div>
+          </div>
+          <p class="text-sm text-slate-400">of calls to service businesses go unanswered during work hours.</p>
+        </div>
+        <div class="stat-item stat-3 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="h-9 w-9 rounded-lg bg-emerald-500/15 flex items-center justify-center"><svg class="w-4.5 h-4.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+            <div class="text-2xl font-bold text-white">&lt;1 sec</div>
+          </div>
+          <p class="text-sm text-slate-400">Vera picks up every call. No rings. No voicemail. No lost jobs.</p>
+        </div>
+      </div>
+      <!-- Center/Right: Phone conversation card -->
+      <div class="lg:col-span-3">
+        <div class="relative rounded-2xl border border-white/10 bg-navy-light/80 backdrop-blur shadow-2xl shadow-black/30 overflow-hidden max-w-lg mx-auto lg:mx-0 lg:ml-auto">
+          <div class="bg-gradient-to-r from-vera to-vera-dark px-5 py-4 text-white flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center ring-pulse"><span class="text-white text-sm font-bold">V</span></div>
+              <div><div class="font-semibold">Vera is answering...</div><div class="text-white/70 text-xs flex items-center gap-1.5"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>Live call simulation</div></div>
+            </div>
+            <div class="text-right text-xs text-white/50">
+              <div>Incoming call</div>
+              <div class="font-mono">0:48</div>
+            </div>
+          </div>
+          <div class="px-5 py-5 space-y-4 bg-gradient-to-b from-navy-light to-navy">
+            <div class="flex gap-2.5 chat-1"><div class="h-7 w-7 rounded-full bg-vera/25 flex items-center justify-center flex-shrink-0"><span class="text-vera text-xs font-bold">V</span></div><div class="rounded-2xl rounded-tl-sm bg-white/10 border border-white/10 px-4 py-2.5 max-w-[85%]"><p class="text-sm text-slate-200">"Hi, thanks for calling. This is Vera — how can I help?"</p></div></div>
+            <div class="flex gap-2.5 justify-end chat-2"><div class="rounded-2xl rounded-tr-sm bg-vera/20 px-4 py-2.5 max-w-[80%]"><p class="text-sm text-slate-200">"I need someone to look at my AC. It stopped working."</p></div></div>
+            <div class="flex gap-2.5 chat-3"><div class="h-7 w-7 rounded-full bg-vera/25 flex items-center justify-center flex-shrink-0"><span class="text-vera text-xs font-bold">V</span></div><div class="rounded-2xl rounded-tl-sm bg-white/10 border border-white/10 px-4 py-2.5 max-w-[85%]"><p class="text-sm text-slate-200">"I have a tech available tomorrow at 10 AM. Want me to book that?"</p></div></div>
+          </div>
+          <div class="px-5 py-3 border-t border-white/10 bg-navy chat-booked">
+            <div class="inline-flex items-center gap-2 rounded-lg bg-emerald-500/15 border border-emerald-500/25 px-3.5 py-2"><svg class="h-4 w-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg><span class="text-sm font-semibold text-emerald-300">Appointment Booked</span><span class="text-xs text-emerald-400/70">· 48 seconds</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Urgency line -->
+    <p class="hero-anim-4 mt-12 text-center text-sm text-slate-500">Every unanswered call is revenue walking out the door.</p>
+  </div>
+  <!-- Dark-to-white transition -->
+  <div class="h-24 bg-gradient-to-b from-navy to-white"></div>
+</section>
+
+<!-- ============ WHAT WE INSTALL ============ -->
+<section id="what-we-install" class="py-20 sm:py-24 bg-gradient-to-b from-white to-slate-50">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-6">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">What we install.</h2>
+      <p class="mt-4 text-lg text-slate-600">A complete phone system that answers, books, and captures leads — without you lifting a finger.</p>
+    </div>
+    <p class="text-center text-sm text-slate-500 mb-12">For tax offices, insurance agencies, home services, salons, law firms, and any business that depends on the phone.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d1">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">24/7 Call Answering</h3>
+        <p class="text-sm text-slate-600">Every call picked up in under a second. Day, night, weekends, holidays. No voicemail. No hold music.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d2">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">Appointment Booking</h3>
+        <p class="text-sm text-slate-600">Vera reads your live calendar and books jobs on the spot. No double-booking. You get a text with the details.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d3">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">Lead Capture</h3>
+        <p class="text-sm text-slate-600">Caller name, number, reason for calling — all logged and sent to you instantly. No leads slip through.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d4">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">Smart Call Routing</h3>
+        <p class="text-sm text-slate-600">Urgent calls go to your cell. Routine questions get answered. Sales calls get filtered. You set the rules.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d5">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">After-Hours Coverage</h3>
+        <p class="text-sm text-slate-600">Most businesses lose 5–15 jobs a month to after-hours calls. Your system answers them all.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d6">
+        <div class="h-10 w-10 rounded-lg bg-vera/10 flex items-center justify-center mb-4"><svg class="w-5 h-5 text-vera" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg></div>
+        <h3 class="font-semibold text-slate-900 mb-1">Sounds Like a Real Person</h3>
+        <p class="text-sm text-slate-600">Callers think you hired a receptionist. Warm, natural, conversational. Not a phone tree. Not a robot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY CALLDIRECTOR ============ -->
+<section id="why-calldirector" class="py-20 sm:py-24 bg-slate-50 border-y border-slate-200">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Why CallDirector — not another app or call center.</h2>
+      <p class="mt-4 text-lg text-slate-600">This isn't software you sign up for. It's a phone system installed and supported by a telecom professional.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d1">
+        <h3 class="font-semibold text-slate-900 mb-2">22 years in telecom</h3>
+        <p class="text-sm text-slate-600">Built phone systems for Verizon, AT&T, the Department of Transportation, and Ford. Now we bring that same reliability to your business.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d2">
+        <h3 class="font-semibold text-slate-900 mb-2">Done for you, not DIY</h3>
+        <p class="text-sm text-slate-600">We design your call flow, configure your system, connect your number, and manage it. You just answer the onboarding call.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d3">
+        <h3 class="font-semibold text-slate-900 mb-2">Your existing number</h3>
+        <p class="text-sm text-slate-600">No new phone number. No disruption. Customers call the same line — they just get an answer now.</p>
+      </div>
+      <div class="rounded-xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d4">
+        <h3 class="font-semibold text-slate-900 mb-2">Real support, not a help desk</h3>
+        <p class="text-sm text-slate-600">When something needs adjusting, you talk to the person who built it. Not a chatbot. Not a ticket queue.</p>
+      </div>
+    </div>
+    <div class="mt-10 grid md:grid-cols-3 gap-8 comp-group">
+      <div class="text-center p-6 rounded-2xl comp-card reveal reveal-d1"><h3 class="font-semibold text-slate-900 mb-2">Generic Call Centers</h3><p class="text-sm text-slate-600">Agents read a script. They don't know your business. Callers notice — and hang up.</p></div>
+      <div class="text-center p-6 rounded-2xl comp-card reveal reveal-d2"><h3 class="font-semibold text-slate-900 mb-2">DIY Software Tools</h3><p class="text-sm text-slate-600">You sign up, watch tutorials, and configure it yourself. When it breaks, you're on your own.</p></div>
+      <div class="text-center border-2 border-vera rounded-2xl p-6 bg-white shadow-lg comp-card comp-vera reveal reveal-d3"><h3 class="font-semibold text-vera mb-2">CallDirector</h3><p class="text-sm text-slate-600">Installed by a telecom expert. Tuned to your business. Managed and supported. Sounds human. Works 24/7.</p></div>
+    </div>
+    <p class="mt-8 text-center text-sm text-slate-500">Most clients see the system pay for itself within the first few jobs.</p>
+  </div>
+</section>
+
+<!-- ============ HEAR VERA ============ -->
+<section id="ask-vera" class="py-20 sm:py-24 bg-gradient-to-b from-white to-slate-50">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-slate-900">Hear it yourself.</h2>
+    <p class="text-lg text-slate-600 mb-10 max-w-xl mx-auto">Ask the questions your callers ask. Hear how the system responds in real time.</p>
+    <div class="relative mx-auto max-w-lg">
+      <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-10 reveal">
+        <button onclick="triggerVeraVoice()" id="vera-inline-mic" class="group relative w-24 h-24 rounded-full bg-gradient-to-br from-vera to-purple-700 flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-vera/30 mx-auto mic-breathe">
+          <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-14 0m7 7v4m-4 0h8m-4-12a3 3 0 00-3 3v4a3 3 0 006 0V8a3 3 0 00-3-3z"/></svg>
+        </button>
+        <p class="text-base font-semibold text-slate-800 mt-6">Click to start talking</p>
+        <p class="text-sm text-slate-400 mt-1">Vera will answer by voice — just like on a real call</p>
+      </div>
+      <p class="mt-5 text-xs text-slate-400">Nothing you say is stored. Live demo only.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section id="results" class="py-20 sm:py-24 border-t border-slate-100">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Results from real businesses.</h2>
+      <p class="mt-4 text-lg text-slate-600">Owners who stopped losing jobs to unanswered calls.</p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d1"><p class="text-slate-700 mb-4">"One-man operation. Can't answer under a house. The system booked <strong>11 jobs my first month</strong>. About $8,200 I would've lost."</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-blue-100 flex items-center justify-center"><span class="font-semibold text-blue-600 text-sm">MR</span></div><div><div class="text-sm font-medium">Mike R.</div><div class="text-xs text-slate-400">Plumber, Austin TX</div></div></div></div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d2"><p class="text-slate-700 mb-4">"Weekend and evening calls are where we make money. Captured <strong>$14,300 in after-hours jobs</strong> last month."</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-orange-100 flex items-center justify-center"><span class="font-semibold text-orange-600 text-sm">ST</span></div><div><div class="text-sm font-medium">Sarah T.</div><div class="text-xs text-slate-400">HVAC, Phoenix AZ</div></div></div></div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d3"><p class="text-slate-700 mb-4">"Customers complimented 'the woman who answered.' No idea it wasn't a person. <strong>Way better than expected.</strong>"</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-green-100 flex items-center justify-center"><span class="font-semibold text-green-600 text-sm">JW</span></div><div><div class="text-sm font-medium">James W.</div><div class="text-xs text-slate-400">Electrician, Denver CO</div></div></div></div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d4"><p class="text-slate-700 mb-4">"Used to miss 30–40% of calls on jobs. Now we <strong>book 8 more appointments a week</strong>."</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-purple-100 flex items-center justify-center"><span class="font-semibold text-purple-600 text-sm">KL</span></div><div><div class="text-sm font-medium">Kevin L.</div><div class="text-xs text-slate-400">Pest Control, Atlanta GA</div></div></div></div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d5"><p class="text-slate-700 mb-4">"Skeptical about putting this on my phones. Handles 90% of calls. The rest get transferred. <strong>It just works.</strong>"</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-red-100 flex items-center justify-center"><span class="font-semibold text-red-600 text-sm">DP</span></div><div><div class="text-sm font-medium">David P.</div><div class="text-xs text-slate-400">Roofer, Seattle WA</div></div></div></div>
+      <div class="rounded-2xl border border-slate-200 bg-white p-6 card-hover reveal reveal-d6"><p class="text-slate-700 mb-4">"Handles bookings and reschedules. <strong>Cut missed calls by 80%</strong> and freed up our front desk."</p><div class="flex items-center gap-3 pt-4 border-t border-slate-100"><div class="h-9 w-9 rounded-full bg-teal-100 flex items-center justify-center"><span class="font-semibold text-teal-600 text-sm">AM</span></div><div><div class="text-sm font-medium">Dr. Amy M.</div><div class="text-xs text-slate-400">Dental Office, Chicago IL</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" class="py-20 sm:py-24 bg-slate-50 border-y border-slate-200">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Simple pricing. No surprises.</h2>
+      <p class="mt-4 text-lg text-slate-600">Every plan includes professional installation, configuration, and ongoing support.</p>
+      <p class="mt-2 text-sm text-slate-500">One missed job usually costs more than a month of service.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- STARTER -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-7 reveal reveal-d1">
+        <div class="text-sm font-semibold text-vera mb-2">Starter</div>
+        <div class="text-3xl font-bold text-slate-900">$197<span class="text-base font-normal text-slate-400"> / mo</span></div>
+        <div class="text-sm text-slate-500 mt-1">$597 one-time setup</div>
+        <div class="my-5 border-t border-slate-200"></div>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>24/7 call answering</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Lead capture &amp; notifications</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Basic call routing</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Your existing number</li>
+        </ul>
+        <p class="mt-4 text-xs text-slate-500">Ideal for solo operators and small teams getting started.</p>
+        <a href="javascript:void(0)" onclick="openTrialModal()" class="mt-5 block w-full text-center rounded-xl border-2 border-vera text-vera px-5 py-2.5 font-semibold hover:bg-vera/5 transition-colors">Get Started</a>
+      </div>
+      <!-- GROWTH -->
+      <div class="rounded-2xl border-2 border-vera bg-white p-7 shadow-lg shadow-vera/10 relative reveal reveal-d2">
+        <div class="absolute -top-3 left-6 rounded-full vera-gradient px-4 py-1 text-xs font-semibold text-white">Most Popular</div>
+        <div class="text-sm font-semibold text-vera mb-2">Growth</div>
+        <div class="text-3xl font-bold text-slate-900">$297<span class="text-base font-normal text-slate-400"> / mo</span></div>
+        <div class="text-sm text-slate-500 mt-1">$997 one-time setup</div>
+        <div class="my-5 border-t border-slate-200"></div>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Starter</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Calendar booking</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Smart call routing &amp; transfers</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>After-hours &amp; overflow handling</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Custom greeting &amp; call scripts</li>
+        </ul>
+        <p class="mt-4 text-xs text-slate-500">For growing businesses that need full phone coverage and booking.</p>
+        <a href="javascript:void(0)" onclick="openTrialModal()" class="mt-5 block w-full text-center rounded-xl vera-gradient text-white px-5 py-2.5 font-semibold cta-primary">Get Started</a>
+      </div>
+      <!-- PREMIUM -->
+      <div class="rounded-2xl border border-slate-200 bg-white p-7 reveal reveal-d3">
+        <div class="text-sm font-semibold text-vera mb-2">Premium</div>
+        <div class="text-3xl font-bold text-slate-900">$497–699<span class="text-base font-normal text-slate-400"> / mo</span></div>
+        <div class="text-sm text-slate-500 mt-1">$1,997+ one-time setup</div>
+        <div class="my-5 border-t border-slate-200"></div>
+        <ul class="space-y-2.5 text-sm text-slate-600">
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Everything in Growth</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Multiple locations or departments</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>CRM &amp; system integrations</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Advanced workflows &amp; routing</li>
+          <li class="flex items-center gap-2.5"><svg class="h-4 w-4 text-vera flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Dedicated support</li>
+        </ul>
+        <p class="mt-4 text-xs text-slate-500">For multi-location businesses or complex phone operations.</p>
+        <a href="javascript:void(0)" onclick="openDemoModal()" class="mt-5 block w-full text-center rounded-xl border-2 border-vera text-vera px-5 py-2.5 font-semibold hover:bg-vera/5 transition-colors">Talk to Us</a>
+      </div>
+    </div>
+    <p class="mt-8 text-center text-sm text-slate-500">Every plan includes professional installation, testing, and ongoing support. No contracts — cancel anytime.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-20 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14"><h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Common questions.</h2></div>
+    <div class="space-y-3">
+      <div class="faq-item rounded-2xl reveal border border-slate-200 bg-white overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50"><h3 class="font-semibold pr-4">Will callers know it's not a person?</h3><svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden px-6 pb-6"><p class="text-slate-600">Most don't. Vera sounds like a friendly receptionist — warm, natural, and conversational. Callers just think you finally hired someone who always picks up.</p></div></div>
+      <div class="faq-item rounded-2xl reveal border border-slate-200 bg-white overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50"><h3 class="font-semibold pr-4">What about emergencies or upset callers?</h3><svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden px-6 pb-6"><p class="text-slate-600">Vera stays calm and listens. For urgent calls, she follows your rules: transfer to you live or take a clear message and text you right away.</p></div></div>
+      <div class="faq-item rounded-2xl reveal border border-slate-200 bg-white overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50"><h3 class="font-semibold pr-4">Do I need a new phone number?</h3><svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden px-6 pb-6"><p class="text-slate-600">No. The system connects to your existing number. Customers call the same line — they just get an answer now.</p></div></div>
+      <div class="faq-item rounded-2xl reveal border border-slate-200 bg-white overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50"><h3 class="font-semibold pr-4">How long does setup take?</h3><svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden px-6 pb-6"><p class="text-slate-600">Most businesses are live in 24–48 hours. We do a short onboarding call, then handle everything else.</p></div></div>
+      <div class="faq-item rounded-2xl reveal border border-slate-200 bg-white overflow-hidden"><button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-6 text-left hover:bg-slate-50"><h3 class="font-semibold pr-4">What if it doesn't work for my business?</h3><svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-content hidden px-6 pb-6"><p class="text-slate-600">We tune the system to your business and adjust as needed. No long-term contracts — you can cancel anytime.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section id="final-cta" class="py-20 sm:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="rounded-3xl vera-gradient p-10 sm:p-14 text-center text-white relative overflow-hidden reveal">
+      <div class="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-white/10 rounded-full blur-3xl"></div>
+      <div class="relative">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4">Your next missed call is revenue lost.</h2>
+      <p class="text-lg opacity-90 mb-8 max-w-xl mx-auto">Let's fix your phones. Free consultation — we'll review your call flow and show you exactly what we'd install.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="javascript:void(0)" onclick="openTrialModal()" class="inline-flex items-center justify-center rounded-xl bg-white text-vera px-10 py-4 text-lg font-bold shadow-lg cta-primary">Start Your 7-Day Pilot<svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg></a>
+        <button onclick="openDemoModal()" class="inline-flex items-center gap-2 text-white/90 font-semibold hover:text-white transition-colors"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>Listen to a live demo call</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-slate-200 bg-white py-12">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div class="md:col-span-2"><div class="flex items-center gap-2.5 mb-4"><div class="h-9 w-9 rounded-lg vera-gradient flex items-center justify-center"><svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div><span class="font-bold text-lg">CallDirector <span class="text-vera">AI</span></span></div><p class="text-slate-500 text-sm max-w-md">Smart phone systems for service businesses. Every call answered. Every lead captured. Installed and supported by a telecom expert.</p></div>
+      <div><h4 class="font-semibold mb-4 text-slate-900">Product</h4><nav class="flex flex-col gap-2 text-sm"><a href="#what-we-install" class="text-slate-500 hover:text-vera">What We Install</a><a href="#pricing" class="text-slate-500 hover:text-vera">Pricing</a><a href="#results" class="text-slate-500 hover:text-vera">Results</a><a href="#faq" class="text-slate-500 hover:text-vera">FAQ</a></nav></div>
+      <div><h4 class="font-semibold mb-4 text-slate-900">Contact</h4><nav class="flex flex-col gap-2 text-sm"><a href="/cdn-cgi/l/email-protection#ee868b828281ae8d8f82828a879c8b8d9a819cc08f898b808d97" class="text-slate-500 hover:text-vera"><span class="__cf_email__" data-cfemail="4c24292020230c2f2d202028253e292f38233e622d2b29222f35">[email&#160;protected]</span></a><a href="tel:+12408521600" class="text-slate-500 hover:text-vera">+1 (240) 852-1600</a><button onclick="openDemoModal()" class="text-left text-slate-500 hover:text-vera">Request a Demo</button></nav></div>
+    </div>
+    <div class="pt-8 pb-24 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4"><p class="text-sm text-slate-400">&copy; 2025 calldirector.agency</p><nav class="flex items-center gap-6 text-sm"><a class="text-slate-400 hover:text-vera" href="#">Privacy Policy</a><a class="text-slate-400 hover:text-vera" href="#">Terms of Service</a></nav></div>
+  </div>
+</footer>
+
+<!-- ==================== DEMO MODAL (Hear Vera Live — PayMeGPT Form) ==================== -->
+<div id="demoModal" class="fixed inset-0 z-[100] hidden">
+  <div class="absolute inset-0 modal-backdrop" onclick="closeDemoModal()"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-2xl">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200 relative">
+      <!-- Decorative glow -->
+      <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-400/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-emerald-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Header -->
+      <div class="vera-gradient px-5 py-4 text-white flex items-center justify-between relative z-10">
+        <div class="flex items-center gap-3">
+          <div class="relative h-11 w-11 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+            <svg class="h-6 w-6 text-white animate-ring" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+            <span class="absolute -top-0.5 -right-0.5 flex h-3 w-3"><span class="animate-ping absolute h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative rounded-full h-3 w-3 bg-green-400 border border-white"></span></span>
+          </div>
+          <div>
+            <div class="font-bold text-lg leading-tight">📞 Hear Vera Live</div>
+            <div class="text-white/80 text-sm">She'll call you in ~60 seconds — no sales pitch</div>
+          </div>
+        </div>
+        <button onclick="closeDemoModal()" class="h-9 w-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors" aria-label="Close">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Trust bar -->
+      <div class="bg-gradient-to-r from-emerald-50 via-white to-purple-50 px-5 py-2.5 flex items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500 border-b border-slate-100">
+        <span class="flex items-center gap-1"><svg class="h-3.5 w-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>100% free</span>
+        <span class="flex items-center gap-1"><svg class="h-3.5 w-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>No obligation</span>
+        <span class="flex items-center gap-1"><svg class="h-3.5 w-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>Takes 30 seconds</span>
+      </div>
+
+      <!-- PayMeGPT iframe -->
+      <div class="bg-white relative">
+        <div id="demoLoading" class="absolute inset-0 flex items-center justify-center bg-white z-10">
+          <div class="flex flex-col items-center gap-3">
+            <div class="h-10 w-10 rounded-full border-[3px] border-purple-200 border-t-purple-600 animate-spin"></div>
+            <span class="text-sm text-slate-600">Loading demo form...</span>
+          </div>
+        </div>
+        <iframe
+          id="demoFrame"
+          src="about:blank"
+          data-src="https://paymegpt.com/forms/t5tnhfiu"
+          class="w-full relative z-20"
+          style="height:72vh;border:0"
+          title="Hear Vera Live Demo Form"
+          loading="lazy"
+          onload="if(this.src!=='about:blank'){document.getElementById('demoLoading').style.display='none'}"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TRIAL MODAL (PayMeGPT Form) ==================== -->
+<div id="trialModal" class="fixed inset-0 z-[120] hidden">
+  <div class="absolute inset-0 modal-backdrop" onclick="closeTrialModal()"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-2xl">
+    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+      <div class="vera-gradient px-5 py-4 text-white flex items-center justify-between">
+        <div>
+          <div class="font-bold text-lg">Start Your 7-Day Pilot</div>
+          <div class="text-white/80 text-sm">We'll review your call flow and build a plan</div>
+        </div>
+        <button onclick="closeTrialModal()" class="h-9 w-9 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors" aria-label="Close">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="bg-white">
+        <iframe id="trialFrame" src="https://paymegpt.com/forms/73mvhx8n" class="w-full" style="height:78vh;border:0" title="CallDirector Trial Form" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== VERA — PMG Voice + Input-Driven Section Sync ==================== -->
+
+
+<!-- Vera Floating Chat Launcher — custom styled iFrame -->
+<!-- Vera floating launcher (iFrame) -->
+
+<div id="vera-launcher">
+  <button id="vera-fab" aria-label="Chat with Vera" onclick="veraToggle()">
+    <svg class="icon-mic" width="24" height="24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+    <svg class="icon-close" width="20" height="20" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+  </button>
+  <div id="vera-label">Talk to Vera</div>
+</div>
+<div id="vera-panel" role="dialog" aria-label="Chat with Vera">
+  <div id="vera-ph">
+    <div class="vera-av">V<span class="vera-dot"></span></div>
+    <div class="vera-ht">
+      <div class="vn">Vera &mdash; AI Receptionist</div>
+      <div class="vs"><span style="width:7px;height:7px;border-radius:50%;background:#10B981;display:inline-block;flex-shrink:0;"></span>Live demo &middot; No signup needed</div>
+    </div>
+    <button id="vera-px" onclick="veraToggle()" aria-label="Close"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div style="position:relative;">
+    <iframe id="vera-iframe" src="https://paymegpt.com/agents/25603715/embed" frameborder="0" title="Chat with Vera"></iframe>
+    <div id="vera-title-overlay">
+      <div class="vto-text">Chat with Vera</div>
+    </div>
+  </div>
+</div>
+<script src="https://paymegpt.com/iframe-auto-resize.js" async></script>
+
+
+<!-- Section Sync — driven by what the USER says, not Vera's response -->
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
