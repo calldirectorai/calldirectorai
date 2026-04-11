@@ -71,7 +71,6 @@ html{scroll-behavior:smooth}
 .nav-phone:hover{color:#7C3AED}
 .integration-strip{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 20px;padding:14px 0}
 .int-badge{display:inline-flex;align-items:center;gap:5px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:5px 12px;font-size:.76rem;font-weight:600;color:#475569}
-/* Revenue calculator */
 .calc-wrap{background:linear-gradient(135deg,#0F172A 0%,#1E1B4B 100%);border-radius:20px;padding:28px;border:1px solid rgba(124,58,237,0.25)}
 .calc-title{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:3px}
 .calc-sub{font-size:.78rem;color:#94a3b8;margin-bottom:18px}
@@ -86,7 +85,6 @@ html{scroll-behavior:smooth}
 .calc-recovered{font-size:1rem;font-weight:700;color:#34d399;margin-top:8px}
 .calc-cta-btn{margin-top:12px;width:100%;background:linear-gradient(135deg,#7C3AED,#5B21B6);color:#fff;border:none;border-radius:10px;padding:11px;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
 .calc-cta-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,.4)}
-/* Cost table */
 .cost-table{width:100%;border-collapse:collapse;font-size:.83rem}
 .cost-table th{padding:9px 12px;text-align:left;font-weight:600;color:#64748b;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid #e2e8f0}
 .cost-table td{padding:11px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle}
